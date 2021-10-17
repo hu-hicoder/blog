@@ -1,0 +1,6 @@
+root = "/go/src/github.com/hu-hicoder/blog/blog-editor/backend"
+tmp_dir = "../tmp"
+
+[build]
+cmd = "go build -o /tmp/main /go/src/github.com/hu-hicoder/blog/blog-editor/backend"
+bin = "/tmp/main"
