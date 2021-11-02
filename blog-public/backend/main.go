@@ -65,8 +65,11 @@ func main() {
 	if err != nil {
 		panic("failed to connect database")
 	}
+	// TODO remove prod, this is dev for init
+	db.Migrator().DropTable(&Article{})
+
 	db.AutoMigrate(&Article{})
-	// this is data for dev
+	// TODO remove this is data for dev
 	insertTestData(db)
 
 	ct := &ArticleController{
@@ -78,6 +81,12 @@ func main() {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+
+	// TODO remove production, avoid CORS in dev
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://localhost:*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
 
 	// Routes
 	e.GET("/", healthCheck)

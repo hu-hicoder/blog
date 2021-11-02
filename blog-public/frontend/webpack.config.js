@@ -21,6 +21,7 @@ module.exports = {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"], // typescript追加
+              plugins: ['@babel/plugin-transform-runtime'], // Uncaught ReferenceError: regeneratorRuntime is not defined のエラーに対応
             },
           },
           'ts-loader' // ts-loader追加
