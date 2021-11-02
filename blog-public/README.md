@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# blog-public
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 目的
+* 本格的ではないが、どのようにブログが作られるかを通してサーバサイドについての知識と、Reactについての知識をつける
 
-## Available Scripts
+# 開発方法
 
-In the project directory, you can run:
+```sh
+cd scripts/docker
+docker-compose up --build
+```
 
-### `yarn start`
+とすればサーバが立ち上がります。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+その後は
+```
+docker-compose up
+```
+を使います。 buildオプションはビルドで時間がかかるので、依存ライブラリを行ったりDockerfileの更新があったときだけでよいです。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+サーバを落とすときは
+```sh
+docker-compose down
+```
+としてください。
 
-### `yarn test`
+# 開発の進め方
+1. issueを見る
+2. できそうなものを探す、なかったらdiscordで相談する
+3. やってみる、途中でもdiscordで実況ログを書いてみる
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+手を動かしてみましょう！
 
-### `yarn build`
+# docker, docker-composeの入れ方
+WSL2では https://zenn.dev/sprout2000/articles/95b125e3359694 などを参考にしてください。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+参考に僕のインストールログを残します
+```sh
+sudo apt-get update
+sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo docker run hello-world
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.0.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+docker-composeはv2を使っています。
