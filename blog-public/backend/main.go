@@ -60,6 +60,7 @@ func insertTestData(db *gorm.DB) {
 	db.Create(&article3)
 }
 func main() {
+	// TODO DBが立ち上がってないときに先に落ちてしまう。起動を遅らせるかリトライ処理を挟む
 	db, err := gorm.Open(mysql.Open(DSN()), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")

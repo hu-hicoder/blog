@@ -29,16 +29,6 @@ services:
       - MYSQL_PASSWORD=test
     networks:
       - blog-network
-  frontend:
-    build:
-      context: ../../
-      dockerfile: scripts/docker/frontend/Dockerfile
-    volumes:
-      - ../../frontend:/frontend
-    ports:
-      - 3000:3000
-    networks:
-      - blog-network
 networks:
   blog-network:
     driver: bridge

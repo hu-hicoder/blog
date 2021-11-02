@@ -1,3 +1,4 @@
 FROM node:16-alpine
+
 WORKDIR /frontend
-CMD [ "npm run start" ]
+# frontendではdevelopmentをローカルで行い、デプロイのみDockerを使う
