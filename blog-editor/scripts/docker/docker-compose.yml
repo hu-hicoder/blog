@@ -21,6 +21,11 @@ services:
     ports:
       - 3001:3001
     restart: always
+    environment:
+      - MYSQL_URI=db
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
     networks:
       - blog-network
 networks:
