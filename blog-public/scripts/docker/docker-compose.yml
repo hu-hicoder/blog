@@ -27,6 +27,7 @@ services:
       - MYSQL_DATABASE=test
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
+    command: ./wait-db.sh
     networks:
       - blog-network
 networks:
