@@ -13,16 +13,32 @@ docker-compose up --build
 とすればサーバが立ち上がります。
 
 その後は
+
 ```
 docker-compose up
 ```
+
 を使います。 buildオプションはビルドで時間がかかるので、依存ライブラリを行ったりDockerfileの更新があったときだけでよいです。
 
 サーバを落とすときは
+
 ```sh
 docker-compose down
 ```
+
 としてください。
+
+これでMySQLサーバ(データベース)とバックエンドサーバ(golang)が立ち上がります。
+
+フロントエンドはローカルから行うことにします。(node_modules周りでWSLが心配なため)
+
+```sh
+cd frontend
+npm install
+npm run dev
+```
+
+これでフロントエンドのサーバが立ち上がります。 `http://localhost:8080` を見てみましょう。何か表示されていれば成功です。
 
 # 開発の進め方
 1. issueを見る
